@@ -12,19 +12,79 @@ export const depsVersion = {
   snowpack: "^1.0.0",
   rollup: "^1.0.0",
 };
-type LibItem = [string, string, boolean];
+type LibItem = [string, string, LibItemOptions];
+interface LibItemOptions {
+  isDev: boolean;
+}
 export const relatedPackage: Record<string, LibItem[]> = {
   webpack: [
-    ["webpack", "^5.51.0", true],
-    ["webpack-cli", "^4.8.0", true],
-    ["webpack-dev-server", "^4.0.0", true],
+    [
+      "webpack",
+      "^5.51.0",
+      {
+        isDev: true,
+      },
+    ],
+    [
+      "webpack-cli",
+      "^4.8.0",
+      {
+        isDev: true,
+      },
+    ],
+    [
+      "webpack-dev-server",
+      "^4.0.0",
+      {
+        isDev: true,
+      },
+    ],
   ],
   react: [
-    ["react", "^17.0.2", false],
-    ["react-dom", "^17.0.2", false],
+    [
+      "react",
+      "^17.0.2",
+      {
+        isDev: false,
+      },
+    ],
+    [
+      "react-dom",
+      "^17.0.2",
+      {
+        isDev: false,
+      },
+    ],
   ],
-  snowpack: [["snowpack", "^1.0.0", false]],
-  rollup: [["rollup", "^1.0.0", false]],
+  typescript: [
+    [
+      "typescript",
+      "^4.3.5",
+      {
+        isDev: true,
+      },
+    ],
+  ],
+  snowpack: [
+    [
+      "snowpack",
+      "^1.0.0",
+      {
+        isDev: true,
+      },
+    ],
+  ],
+  rollup: [
+    [
+      "rollup",
+      "^1.0.0",
+      {
+        isDev: true,
+      },
+    ],
+  ],
 };
 
-
+export const buildPlugins = {
+  typescript: {},
+};

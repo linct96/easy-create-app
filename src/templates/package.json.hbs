@@ -1,0 +1,19 @@
+{
+  "name": "<%= name %>",
+  "description": "{{description}}",
+  "version": "{{version}}",
+  "main": "{{main}}",
+  "repository": "{{repository}}",
+  "author": "{{author}}",
+  "license": "{{license}}",
+  "dependencies": {
+    {{#each dependencies}}
+    "{{this.name}}":"{{this.version}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  },
+  "devDependencies": {
+    {{#each devDependencies}}
+    "{{this.name}}":"{{this.version}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  }
+}

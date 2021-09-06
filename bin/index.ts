@@ -20,6 +20,7 @@ program
   )
   .option("-d, --default", "Skip prompts and use default preset")
   .option("-l, --main-lib <mainLib>", "choose a lib")
+  .option("-l, --typescript <typescript>", "enable typescript")
   .allowUnknownOption()
   .action((name, options) => {
     // if (minimist(process.argv.slice(3))._.length > 1) {
