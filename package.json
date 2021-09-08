@@ -8,6 +8,8 @@
     "eca": "dist/bin/index.js"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/ejs": "^3.1.0",
     "chalk": "^4.1.2",
     "commander": "^8.1.0",
@@ -17,7 +19,10 @@
     "pug": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
     "typescript": "^4.3.5",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.1.0"
   },
   "devDependencies": {

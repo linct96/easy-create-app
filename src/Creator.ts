@@ -1,16 +1,14 @@
 import fs from "fs";
 import path from "path";
 import execa from "execa";
-import handlebars from "handlebars";
-import ejs from 'ejs'
+import ejs from "ejs";
 import { CommanderOptions } from "./types";
-import { depsVersion, relatedPackage } from "./config";
+import { relatedPackage } from "./config";
 import { sourcePath } from "./utils";
 interface IDependence {
   name: string;
   version: string;
 }
-
 
 class Creator {
   projectName: string;
@@ -66,7 +64,7 @@ class Creator {
     };
   }
 
-  resolvePackage(deps: ReturnType<Creator['getDependencies']>) {
+  resolvePackage(deps: ReturnType<Creator["getDependencies"]>) {
     const pkgData = {
       name: this.projectName,
       description: "",
@@ -77,29 +75,25 @@ class Creator {
       license: "",
       ...deps,
     };
-    this.writeFileWithTpl(sourcePath.packageTpl,pkgData)
-    this.writeFileWithTpl(sourcePath.indexTpl)
+    this.writeFileWithTpl(sourcePath.packageTpl, pkgData);
+    this.writeFileWithTpl(sourcePath.indexTpl);
     execa("yarn", ["install"], { cwd: this.pathContext }).stdout?.pipe(
       process.stdout
     );
   }
 
-  writeFileWithHbs(tplPath:string,data?:any){
-    const template = fs.readFileSync(tplPath);
-    const fileStr = handlebars.compile(template.toString())(data);
-    const pkgPath = path.resolve(this.pathContext, path.basename(tplPath,'.hbs'));
-    fs.writeFileSync(pkgPath, fileStr);
-  }
-
-  writeFileWithTpl(tplPath:string,data?:any){
-    return new Promise<void>((resolve,reject)=>{
-      ejs.renderFile(tplPath,data,{},(err,str)=>{
-        if (err) reject(err)
-        const filePath = path.resolve(this.pathContext, path.basename(tplPath,'.ejs'));
+  writeFileWithTpl(tplPath: string, data?: any) {
+    return new Promise<void>((resolve, reject) => {
+      ejs.renderFile(tplPath, data, {}, (err, str) => {
+        if (err) reject(err);
+        const filePath = path.resolve(
+          this.pathContext,
+          path.basename(tplPath, ".ejs")
+        );
         fs.writeFileSync(filePath, str);
-        resolve()
-      })
-    })
+        resolve();
+      });
+    });
   }
 }
 export default Creator;
