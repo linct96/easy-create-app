@@ -1,26 +1,24 @@
-import { Command } from "commander";
-import create from "../src/create";
+import { Command } from 'commander'
+import create from '../src/main'
 import chalk from 'chalk'
-const program = new Command();
-
-
+const program = new Command()
 
 program
   .arguments('<project-directory>')
   .usage(`${chalk.green('<project-directory>')} [options]`)
-  // .command("create <app-name>")
-  .description("create a new project powered by easy-create-app")
+  .command('create <app-name>')
+  .description('create a new project powered by easy-create-app')
   .option(
-    "-p, --preset <presetName>",
-    "Skip prompts and use saved or remote preset"
+    '-p, --preset <presetName>',
+    'Skip prompts and use saved or remote preset'
   )
   .option(
-    "-B, --build-tool <buildTool>",
-    "choose one buildTool to build your app"
+    '-B, --build-tool <buildTool>',
+    'choose one buildTool to build your app'
   )
-  .option("-d, --default", "Skip prompts and use default preset")
-  .option("-l, --main-lib <mainLib>", "choose a lib")
-  .option("-l, --typescript <typescript>", "enable typescript")
+  .option('-d, --default', 'Skip prompts and use default preset')
+  .option('-l, --main-lib <mainLib>', 'choose a lib')
+  .option('-l, --typescript <typescript>', 'enable typescript')
   .allowUnknownOption()
   .action((name, options) => {
     // if (minimist(process.argv.slice(3))._.length > 1) {
@@ -30,8 +28,7 @@ program
     // if (process.argv.includes('-g') || process.argv.includes('--git')) {
     //   options.forceGit = true
     // }
-    create(name, options);
-  });
+    create(name, options)
+  })
 
-
-program.parse(process.argv);
+program.parse(process.argv)
